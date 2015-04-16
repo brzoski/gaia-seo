@@ -1,0 +1,15 @@
+{
+    "name": "eandraos/gaia-seo",
+    "description": "Add SEO and sharing tags to pages/modules in the Gaia CMS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elie Andraos",
+            "email": "elie@andraos.org",
+            "role": "Developer"
+        }
+    ],
+    "keywords": ["laravel 5", "gaia project", "seo", "meta tags", "facebook", "twitter", "polymorphic", "cms"],
+    "minimum-stability": "stable",
+    "require": {}
+}
