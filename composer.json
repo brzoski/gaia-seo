@@ -11,5 +11,10 @@
     ],
     "keywords": ["laravel 5", "gaia project", "seo", "meta tags", "facebook", "twitter", "polymorphic", "cms"],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+     "autoload": {
+        "psr-0": {
+            "Gaia\\Seo": "src/"
+        }
+    }
 }
