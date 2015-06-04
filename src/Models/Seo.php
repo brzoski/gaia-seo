@@ -1,12 +1,18 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Vinkla\Translator\Translatable;
+use Vinkla\Translator\Contracts\Translatable as TranslatableContract;
 
-class Seo extends Model {
+class Seo extends Model implements TranslatableContract
+{
+	use Translatable;
 
 	protected $table = 'seo';
 	protected $fillable = ['meta_title', 'meta_keywords', 'meta_description', 'facebook_title', 'facebook_description', 'facebook_image', 'twitter_title', 'twitter_image', 'twitter_description', 'seoable_type', 'seoable_id'];
-	protected $hidden = [];
+	protected $translatedAttributes = ['meta_title', 'meta_keywords', 'meta_description', 'facebook_title', 'facebook_description', 'twitter_title', 'twitter_description'];
+	protected $translator = 'App\Models\SeoTranslation';
+	
 
 	/**
 	 * Polymorphism function
