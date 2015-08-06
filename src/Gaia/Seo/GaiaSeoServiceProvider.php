@@ -1,6 +1,8 @@
 <?php namespace Gaia\Seo;
 
 use Illuminate\Support\ServiceProvider;
+use Gaia\Seo\MetaTag;
+use Gaia\Seo\MetaTagInterface;
 
 class GaiaSeoServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,12 @@ class GaiaSeoServiceProvider extends ServiceProvider
         $this->publishes([ __DIR__ .'/../../Database' => base_path('database/') ]);
         //Publish the models
         $this->publishes([ __DIR__ .'/../../Models' => base_path('app/Models/') ]);
+
+
+        //config
+        $this->publishes([__DIR__ . '/../../Config/metatag.php' => config_path('metatag.php')]);
+        $this->mergeConfigFrom(__DIR__ . '/../../Config/metatag.php', 'metatag');        
+        
     }
 
 
@@ -35,7 +43,11 @@ class GaiaSeoServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('metatag', function ($app) {
+            return new MetaTag( $app['config']->get('metatag', []) );
+        });
 
+        $this->app->bind('Gaia\Seo\MetaTagInterface', 'Gaia\Seo\MetaTag');
     }
 
     /**
@@ -45,7 +57,7 @@ class GaiaSeoServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-       
+         return [];
     }
 
 }
